@@ -1,17 +1,19 @@
-# ScreenShott
+![Image](/img/github_banner.png)
 
 ### Specs
-[ ![Download](https://api.bintray.com/packages/nisrulz/maven/com.github.nisrulz%3Ascreenshott/images/download.svg) ](https://bintray.com/nisrulz/maven/com.github.nisrulz%3Ascreenshott/_latestVersion)
+[ ![Download](https://api.bintray.com/packages/nisrulz/maven/com.github.nisrulz%3Ascreenshott/images/download.svg) ](https://bintray.com/nisrulz/maven/com.github.nisrulz%3Ascreenshott/_latestVersion) [![API](https://img.shields.io/badge/API-14%2B-orange.svg?style=flat)](https://android-arsenal.com/api?level=14)
 
 ### Badges/Featured In
-[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Screenshott-brightgreen.svg?style=flat)](https://android-arsenal.com/details/1/4963#)
+[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Screenshott-brightgreen.svg?style=flat)](https://android-arsenal.com/details/1/4963#) [![AndroidDev Digest](https://img.shields.io/badge/AndroidDev%20Digest-%23125-blue.svg)](https://www.androiddevdigest.com/digest-125/)
 
-### Show some :heart:
+### Show some :heart: and star the repo to support the project
 [![GitHub stars](https://img.shields.io/github/stars/nisrulz/screenshott.svg?style=social&label=Star)](https://github.com/nisrulz/screenshott) [![GitHub forks](https://img.shields.io/github/forks/nisrulz/screenshott.svg?style=social&label=Fork)](https://github.com/nisrulz/screenshott/fork) [![GitHub watchers](https://img.shields.io/github/watchers/nisrulz/screenshott.svg?style=social&label=Watch)](https://github.com/nisrulz/screenshott) [![GitHub followers](https://img.shields.io/github/followers/nisrulz.svg?style=social&label=Follow)](https://github.com/nisrulz)
 [![Twitter Follow](https://img.shields.io/twitter/follow/nisrulz.svg?style=social)](https://twitter.com/nisrulz)
 
 
-Take screenshot on a click of a button.
+Take a screenshot of your view layout , programmatically!
+
+![sc1](/img/sc1.png)  ![sc2](/img/sc2.png)
 
 # Including in your project
 ScreenShott is available in the Jcenter, so getting it as simple as adding it as a dependency
@@ -21,14 +23,39 @@ compile 'com.github.nisrulz:screenshott:{latest version}'
 where `{latest version}` corresponds to published version in [ ![Download](https://api.bintray.com/packages/nisrulz/maven/com.github.nisrulz%3Ascreenshott/images/download.svg) ](https://bintray.com/nisrulz/maven/com.github.nisrulz%3Ascreenshott/_latestVersion)
 
 
-#Usage
-+ Get bitmap of screenshot and save it on device
+# Usage
++ Get bitmap of screenshot
 
-```java
-ScreenShott.getInstance().takeScreenShotOfRootView(view);
-```
+  ```java
+  // View with spaces as per constraints
+  Bitmap bitmap_view = ScreenShott.getInstance().takeScreenShotOfView(view);
 
-where the param is _**view**_
+  // RootView
+  Bitmap bitmap_rootview = ScreenShott.getInstance().takeScreenShotOfRootView(view);
+
+  // Just the View without any constraints
+  Bitmap bitmap_hiddenview = ScreenShott.getInstance().takeScreenShotOfJustView(view);
+
+  // Texture View
+  Bitmap bitmap_textureview= ScreenShott.getInstance().takeScreenShotOfTextureView(textureview);
+  ```
+
++ Save the bitmap using the provided helper function
+
+  ```java
+  File file = ScreenShott.getInstance().saveScreenshotToPicturesFolder(context, bitmap, "my_screenshot_filename");
+  ```
+  You can use the `file` object returned by `saveScreenshotToPicturesFolder()` to get the file object and then the path of the file saved
+
+  ```java
+  String bitmapFilePath = file.getAbsolutePath();
+  ```
+  > Add permission `<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>` to your AndroidManifest.xml
+  >
+  > Request the runtime permission for `android.permission.WRITE_EXTERNAL_STORAGE` to allow saving the file to external storage.
+
+  .. or save the bitmap with your own implementation
+
 
 ### Pull Requests
 I welcome and encourage all pull requests. It usually will take me within 24-48 hours to respond to any issue or request. Here are some basic rules to follow to ensure timely addition of your request:
@@ -42,10 +69,10 @@ I welcome and encourage all pull requests. It usually will take me within 24-48 
 ### Created & Maintained By
 [Nishant Srivastava](https://github.com/nisrulz) ([@nisrulz](https://www.twitter.com/nisrulz))
 
-> If you found this library helpful or you learned something from the source code and want to thank me, consider buying me a cup of :coffee:
->
-> <a href='https://ko-fi.com/A443EQ6' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://az743702.vo.msecnd.net/cdn/kofi1.png?v=f' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
 
+> If you found this library helpful or you learned something from the source code and want to thank me, consider buying me a cup of :coffee:
+>  + [PayPal](https://www.paypal.me/nisrulz/5)
+>  + Bitcoin Address: 13PjuJcfVW2Ad81fawqwLtku4bZLv1AxCL
 
 License
 =======
